@@ -16,17 +16,41 @@
 <div class="form-wrapper" style="width: 500px; margin: 0 auto">
 <h1>Calendar</h1>
 <%= simple_form_for :calendar, method: :get do |f| %>
-  <%= f.input :day, as: :string, input_html: { class: 'datepicker'} %> <br><br>
-    <% if @calendar.nil? %>
-      <li><%= link_to 'Add subject','javascript:void(0);',id: 'subject-add'  %></li>
-    <% end %>
+  <%= f.input :day, as: :string, input_html: { class: 'datepicker'} %>
+  <%end%>
+  <% if @calendar.nil? %>
+      <%= link_to 'create list', 'javascript:void(0)', id: 'create-list' %>
+  <% elsif @day.nil? %>
+    <li><%= link_to 'Add subject','javascript:void(0);',id: 'subject-add'  %></li>
     <div id="subjects-container">
       <ol id="subjects-list">
       </ol>
     </div>
+    <%= link_to 'save item', 'javascript:void(0)', id: 'save-item' %>
+  <% else %>
+    <li><%= link_to 'Add subject','javascript:void(0);',id: 'subject-add'  %></li>
+    <div id="subjects-container">
+      <ol id="subjects-list">
+        <% @day.each do |day|%>
+          <li>
+            <div id="<%= day.id %>" >
+              <%= select_tag 'subject-name',
+                             options_for_select(@subjects.collect{ |u| [u.name, u.id] }),
+                             id: 'subject-name-collection', selected: @day.subjects_id %>
+              <%= select_tag 'teacher-name',
+                             options_for_select(@teachers.collect{ |u| [u.name, u.id] }),
+                             id: 'teacher-name-collection', selected: @day.teachers.id %>
+              <%= select_tag 'teacher-surname',
+                             options_for_select(@teachers.collect{ |u| [u.surname, u.id] }),
+                             id: 'teacher-surname-collection', selected: @dat.teachers.id %>
+            </div>
+          </li>
+        <% end %>
+      </ol>
+    </div>
+  <% end %>
     <%= link_to 'Submit', 'javascript:void(0);', class: 'btn btn-primary submit-btn',
                id: 'calendar-send-btn' %>
-<%end%>
   <%= link_to 'Create subject', new_subject_path %> |
   <%= link_to 'Add teacher', new_teacher_path %>
 </div>

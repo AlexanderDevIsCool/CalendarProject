@@ -1,3 +1,3 @@
 class Calendar < ApplicationRecord
-  has_many :days
+  validates :date, uniqueness: true
 end

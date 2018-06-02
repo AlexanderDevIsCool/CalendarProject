@@ -18,7 +18,7 @@ $(document).ready(function() {
         var li = document.createElement("li");
         var element = hidden_information.cloneNode(true);
 
-        element.setAttribute('id', 'info' + subject_count);
+        element.setAttribute('id', '' + subject_count);
         element.style.visibility = 'visible';
 
         li.appendChild(element);
