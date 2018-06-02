@@ -4,8 +4,8 @@ class CalendarsController < ApplicationController
   # GET /calendars.json
   def index
     @calendar = Calendar.find_by(date: Date.today.to_s)
-    #@teachers = Teacher.all
-   # @subjects = Subject.all
+    @teachers = Teacher.all
+    @subjects = Subject.all
     #unless @calendar.nil?
     #  @day = Day.find_by(id: calendar.id)
     #  Day.joins(:teachers, :subject).where("teachers.id = #{day.teachers_id} &&

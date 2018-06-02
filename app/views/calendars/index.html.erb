@@ -42,7 +42,7 @@
                              id: 'teacher-name-collection', selected: @day.teachers.id %>
               <%= select_tag 'teacher-surname',
                              options_for_select(@teachers.collect{ |u| [u.surname, u.id] }),
-                             id: 'teacher-surname-collection', selected: @dat.teachers.id %>
+                             id: 'teacher-surname-collection', selected: @day.teachers.id %>
             </div>
           </li>
         <% end %>
