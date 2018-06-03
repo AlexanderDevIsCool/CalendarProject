@@ -12,19 +12,18 @@
 
 <p id="notice"><%= notice %></p>
 
-<div class="container" id="<%= @calendar.id %>">
+<div class="container">
 <div class="form-wrapper" style="width: 500px; margin: 0 auto">
 <h1>Calendar</h1>
 <%= simple_form_for :calendar, method: :get do |f| %>
   <%= f.input :date, as: :string, input_html: { class: 'datepicker'} %>
   <%end%>
   <% if @calendar.nil? %>
-      <%= link_to 'create list', 'javascript:void(0)', id: 'create-list' %>
+      <%= link_to 'Create list', 'javascript:void(0)', id: 'create-list', class: 'btn btn-primary' %>
   <% elsif @day.nil? %>
     <li><%= link_to 'Add subject','javascript:void(0);',id: 'subject-add'  %></li>
     <div id="subjects-container">
-      <ol id="subjects-list">
-      </ol>
+      <ol id="subjects-list"></ol>
     </div>
     <br>
     <%= link_to 'Save list', 'javascript:void(0);', class: 'btn btn-primary submit-btn',
@@ -50,15 +49,15 @@
               <%= link_to 'delete item', 'javascript:void(0)', id: 'delete-item' %>
             </div>
           </li>
-          <br>
+          <br>          
           <%= link_to 'Save list', 'javascript:void(0);', class: 'btn btn-primary submit-btn',
                       id: 'calendar-send-btn' %>
           <br>
         <% end %>
       </ol>
     </div>
-  <% end %>
-  <%= link_to 'Create subject', new_subject_path %> |
-  <%= link_to 'Add teacher', new_teacher_path %>
+  <% end %>  
+  <%= link_to 'Create subject', new_subject_path, class: 'btn btn-primary' %>
+  <%= link_to 'Add teacher', new_teacher_path, class: 'btn btn-primary' %>  
 </div>
 </div>
