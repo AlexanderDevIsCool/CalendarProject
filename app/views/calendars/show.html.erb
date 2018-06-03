@@ -1,4 +1,28 @@
-<p id="notice"><%= notice %></p>
+<div id="hidden-information", style="display: none">
+  <%= select_tag 'subject-name',
+                 options_for_select(@subjects.collect{ |u| [u.name, u.id] }) %>
+  <%= select_tag 'teacher-name',
+                 options_for_select(@teachers.collect{ |u| [u.name, u.id] }) %>
+  <%= select_tag 'teacher-surname',
+                 options_for_select(@teachers.collect{ |u| [u.surname, u.id] }) %>
 
-<%= link_to 'Edit', edit_calendar_path(@calendar) %> |
+  <%= link_to 'save item', 'javascript:void(0)', id: 'save-item' %> |
+  <%= link_to 'delete item', 'javascript:void(0)', id: 'delete-item' %>
+</div>
+
+<h1>New Calendar</h1>
+
+<li><%= link_to 'Add subject','javascript:void(0);',id: 'subject-add'  %></li>
+<div class="subjects-container" id="<%= @calendar.id %>">
+  <ol id="subjects-list">
+
+  </ol>
+</div>
+<br>
+<%= link_to 'Save list', 'javascript:void(0);', class: 'btn btn-primary submit-btn',
+            id: 'calendar-send-btn' %>
+<%= link_to 'Delete list', 'javascript:void(0);', class: 'btn btn-primary submit-btn',
+            id: 'calendar-delete-btn'%>
+<br>
+
 <%= link_to 'Back', calendars_path %>

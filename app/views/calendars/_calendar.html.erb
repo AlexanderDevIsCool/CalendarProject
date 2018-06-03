@@ -1,0 +1,20 @@
+<% @day.each do |day|%>
+  <li>
+    <div id="<%= day.id %>" >
+      <%= select_tag 'subject-name',
+                     options_for_select(@subjects.collect{ |u| [u.name, u.id] },
+                                        selected: day.subjects_id),
+                     id: 'subject-name-collection'%>
+      <%= select_tag 'teacher-name',
+                     options_for_select(@teachers.collect{ |u| [u.name, u.id] },
+                                        selected: day.teachers_id),
+                     id: 'teacher-name-collection'%>
+      <%= select_tag 'teacher-surname',
+                     options_for_select(@teachers.collect{ |u| [u.surname, u.id] },
+                                        selected: day.teachers_id),
+                     id: 'teacher-surname-collection'%> |
+    </div>
+  </li>
+  <br>
+  <br>
+<% end %>

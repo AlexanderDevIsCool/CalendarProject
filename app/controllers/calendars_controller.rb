@@ -1,28 +1,38 @@
 class CalendarsController < ApplicationController
   def index
     date = params[:date] ||= Date.today.to_s
+    p params[:date]
     @calendar = Calendar.find_by(date: date)
-    p "NIL ? -> #{@calendar.nil?}"
-    @day = Day.find_by(calendars_id: @calendar.id) unless @calendar.nil?
+    @day = Day.where(calendars_id: @calendar.id) unless @calendar.nil?
+    p "CALENDAR: #{@calendar.nil?}"
+    p "DAY: #{@day.nil?}"
+    unless @day.nil?
+    @teachers = Teacher.where(id: @day.map(&:teachers_id))
+    @subjects = Subject.where(id: @day.map(&:subjects_id))
+    end
+  end
+
+  def show
+    @calendar = Calendar.find_by(id: params[:id])
     @teachers = Teacher.all
     @subjects = Subject.all
   end
 
-  def show
-  end
-
   def new
-    @calendar = Calendar.new
   end
 
   def edit
+    @calendar = Calendar.find_by(id: params[:id])
+    @day = Day.where(calendars_id: @calendar.id)
+    @teachers = Teacher.all
+    @subjects = Subject.all
   end
 
   def create
     p calendars_params
     @calendar = Calendar.new(calendars_params)
       if @calendar.save
-
+        redirect_to @calendar
       else
       end
   end
@@ -31,11 +41,9 @@ class CalendarsController < ApplicationController
   end
 
   def destroy
-    @calendar.destroy
-    respond_to do |format|
-      format.html { redirect_to calendars_url, notice: 'Calendar was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    Day.where(calendars_id: params[:id]).destroy_all
+    Calendar.find_by(id: params[:id]).destroy
+    redirect_to calendars_path
   end
 
   private

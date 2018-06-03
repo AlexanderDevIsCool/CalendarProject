@@ -5,12 +5,12 @@ flatpickr(".datepicker", {
     altInput: true,
     onChange: function(selectedDates, dateStr, instance) {
         $.ajax({
-            url: '/?date=' + dateStr,
+            url: '/calendars?date=' + dateStr,
             type: 'GET',
             success: function(r){
-
             }
         });
+
     },
     onClose: function(selectedDates, dateStr, instance) {
         $('#create-list').on('click', function(){
@@ -19,7 +19,6 @@ flatpickr(".datepicker", {
                     type: 'POST',
                     data: {calendar: { date: dateStr }},
                     success: function (r) {
-
                     }
                 });
         });
