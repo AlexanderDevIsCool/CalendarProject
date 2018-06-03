@@ -4,7 +4,13 @@ import 'flatpickr/dist/flatpickr.min.css'
 flatpickr(".datepicker", {
     altInput: true,
     onChange: function(selectedDates, dateStr, instance) {
+        $.ajax({
+            url: '/?date=' + dateStr,
+            type: 'GET',
+            success: function(r){
 
+            }
+        });
     },
     onClose: function(selectedDates, dateStr, instance) {
         $('#create-list').on('click', function(){

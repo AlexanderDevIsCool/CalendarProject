@@ -14,7 +14,6 @@
     <% @subjects.each do |subject| %>
       <tr>
         <td><%= subject.name %></td>
-        <td><%= link_to 'Show', subject %></td>
         <td><%= link_to 'Edit', edit_subject_path(subject) %></td>
         <td><%= link_to 'Destroy', subject, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
@@ -24,4 +23,6 @@
 
 <br>
 
-<%= link_to 'New Subject', new_subject_path %>
+<%= link_to 'New Subject', new_subject_path %> |
+<%= link_to 'Teachers', teachers_path %> |
+<%= link_to 'Home', root_path %>

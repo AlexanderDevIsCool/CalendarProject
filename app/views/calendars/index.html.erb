@@ -1,22 +1,22 @@
-<div id="hidden-information">
+<div id="hidden-information", style="display: none">
   <%= select_tag 'subject-name',
-                 options_for_select(@subjects.collect{ |u| [u.name, u.id] }),
-                 id: 'subject-name-collection', visibility: :hidden %>
+                 options_for_select(@subjects.collect{ |u| [u.name, u.id] }) %>
   <%= select_tag 'teacher-name',
-                 options_for_select(@teachers.collect{ |u| [u.name, u.id] }),
-                 id: 'teacher-name-collection' %>
+                 options_for_select(@teachers.collect{ |u| [u.name, u.id] }) %>
   <%= select_tag 'teacher-surname',
-                 options_for_select(@teachers.collect{ |u| [u.surname, u.id] }),
-                 id: 'teacher-surname-collection' %>
+                 options_for_select(@teachers.collect{ |u| [u.surname, u.id] }) %>
+
+  <%= link_to 'save item', 'javascript:void(0)', id: 'save-item' %> |
+  <%= link_to 'delete item', 'javascript:void(0)', id: 'delete-item' %>
 </div>
 
 <p id="notice"><%= notice %></p>
 
-<div class="container">
+<div class="container" id="<%= @calendar.id %>">
 <div class="form-wrapper" style="width: 500px; margin: 0 auto">
 <h1>Calendar</h1>
 <%= simple_form_for :calendar, method: :get do |f| %>
-  <%= f.input :day, as: :string, input_html: { class: 'datepicker'} %>
+  <%= f.input :date, as: :string, input_html: { class: 'datepicker'} %>
   <%end%>
   <% if @calendar.nil? %>
       <%= link_to 'create list', 'javascript:void(0)', id: 'create-list' %>
@@ -26,7 +26,10 @@
       <ol id="subjects-list">
       </ol>
     </div>
-    <%= link_to 'save item', 'javascript:void(0)', id: 'save-item' %>
+    <br>
+    <%= link_to 'Save list', 'javascript:void(0);', class: 'btn btn-primary submit-btn',
+                id: 'calendar-send-btn' %>
+    <br>
   <% else %>
     <li><%= link_to 'Add subject','javascript:void(0);',id: 'subject-add'  %></li>
     <div id="subjects-container">
@@ -42,15 +45,19 @@
                              id: 'teacher-name-collection', selected: @day.teachers.id %>
               <%= select_tag 'teacher-surname',
                              options_for_select(@teachers.collect{ |u| [u.surname, u.id] }),
-                             id: 'teacher-surname-collection', selected: @day.teachers.id %>
+                             id: 'teacher-surname-collection', selected: @day.teachers.id %> |
+              <%= link_to 'save item', 'javascript:void(0)', id: 'save-item' %> |
+              <%= link_to 'delete item', 'javascript:void(0)', id: 'delete-item' %>
             </div>
           </li>
+          <br>
+          <%= link_to 'Save list', 'javascript:void(0);', class: 'btn btn-primary submit-btn',
+                      id: 'calendar-send-btn' %>
+          <br>
         <% end %>
       </ol>
     </div>
   <% end %>
-    <%= link_to 'Submit', 'javascript:void(0);', class: 'btn btn-primary submit-btn',
-               id: 'calendar-send-btn' %>
   <%= link_to 'Create subject', new_subject_path %> |
   <%= link_to 'Add teacher', new_teacher_path %>
 </div>
