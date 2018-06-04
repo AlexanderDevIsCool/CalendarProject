@@ -58,6 +58,13 @@ class CalendarsController < ApplicationController
     end
   end
 
+  def ajax_for_day
+    @calendar = Calendar.find_by(id: params[:id])
+    @day = Day.where(calendars_id: @calendar.id)
+    @teachers = Teacher.all
+    @subjects = Subject.all
+  end
+
   private
 
     def calendars_params

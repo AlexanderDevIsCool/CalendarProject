@@ -14,7 +14,11 @@ flatpickr(".datepicker", {
 
     },
     onClose: function(selectedDates, dateStr, instance) {
-        $('#create-list').on('click', function(){
+        $(document).on ("click", '#create-list', function (e) {
+            if($(this).hasClass('disabled')){
+                e.preventDefault();
+            }
+            else{
                 $.ajax({
                     url: '/calendars',
                     type: 'POST',
@@ -22,6 +26,8 @@ flatpickr(".datepicker", {
                     success: function (r) {
                     }
                 });
+                $(this).addClass('disabled');
+            }
         });
     }
 });

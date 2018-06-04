@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :day
 
   get 'ajax_for_index', to: 'calendars#ajax_for_index'
+  get 'ajax_for_day', to: 'calendars#ajax_for_day'
 
   root 'calendars#index'
 end

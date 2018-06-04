@@ -6,7 +6,6 @@
   <%= select_tag 'teacher-surname',
                  options_for_select(@teachers.collect{ |u| [u.surname, u.id] }) %>
 
-  <%= link_to 'save item', 'javascript:void(0)', id: 'save-item' %> |
   <%= link_to 'delete item', 'javascript:void(0)', id: 'delete-item' %>
 </div>
 

@@ -2,51 +2,20 @@
 
 <div id="hidden-information", style="display: none">
   <%= select_tag 'subject-name',
-                 options_for_select(@subjects.collect{ |u| [u.name, u.id] }),
-                 include_blank: true %>
+                 options_for_select(@subjects.collect{ |u| [u.name, u.id] }) %>
   <%= select_tag 'teacher-name',
-                 options_for_select(@teachers.collect{ |u| [u.name, u.id] }),
-                 include_blank: true %>
+                 options_for_select(@teachers.collect{ |u| [u.name, u.id] })%>
   <%= select_tag 'teacher-surname',
-                 options_for_select(@teachers.collect{ |u| [u.surname, u.id] }),
-                 include_blank: true %>
+                 options_for_select(@teachers.collect{ |u| [u.surname, u.id] })%>
 
   <%= link_to 'save item', 'javascript:void(0)', id: 'save-item' %> |
   <%= link_to 'delete item', 'javascript:void(0)', id: 'delete-item' %>
 </div>
 
   <li><%= link_to 'Add subject','javascript:void(0);',id: 'subject-add'  %></li>
-  <div class="subjects-container" id="<%= @calendar.id %>">
-    <ol id="subjects-list">
-      <% unless @day.nil? %>
-        <% @day.each do |day|%>
-          <li>
-            <div id="<%= day.id %>" >
-              <%= select_tag 'subject-name',
-                             options_for_select(@subjects.collect{ |u| [u.name, u.id] },
-                                                selected: day.subjects_id),
-                             id: 'subject-name-collection'%>
-              <%= select_tag 'teacher-name',
-                             options_for_select(@teachers.collect{ |u| [u.name, u.id] },
-                                                selected: day.teachers_id),
-                             id: 'teacher-name-collection'%>
-              <%= select_tag 'teacher-surname',
-                             options_for_select(@teachers.collect{ |u| [u.surname, u.id] },
-                                                selected: day.teachers_id),
-                             id: 'teacher-surname-collection'%> |
-              <%= link_to 'save item', 'javascript:void(0)', id: 'save-item' %> |
-              <%= link_to 'delete item', 'javascript:void(0)', id: 'delete-item' %>
-            </div>
-          </li>
-          <br>
-        <% end %>
-      <% end %>
-    </ol>
-    <%= link_to 'Save list', 'javascript:void(0);', class: 'btn btn-primary submit-btn',
-                id: 'calendar-send-btn' %>
-    <%= link_to 'Delete list', 'javascript:void(0);', class: 'btn btn-primary submit-btn',
-                id: 'calendar-delete-btn'%>
-  </div>
+<div class="day-ajax">
+  <%= render 'day'%>
+</div>
 
 <%= link_to 'Back', calendars_path %> |
 <%= link_to 'Teachers', teachers_path %> |
