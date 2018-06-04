@@ -2,9 +2,11 @@ class SubjectsController < ApplicationController
   before_action :set_subject, only: [:edit, :update, :destroy]
 
   def index
-    @subject = Subject.all
+    @subjects = Subject.all
+    if params[:term]
     @subject = Subject.order(:name).where("name like ?", "%#{params[:term]}%")
     render json: @subject.map(&:name)
+    end
   end
 
   def show

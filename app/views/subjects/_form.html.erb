@@ -13,10 +13,11 @@
 
   <div class="field">
     <%= form.label :name %>
-    <%= form.text_field :name%>
+    <%= form.text_field :name, class: 'form-control' %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit 'Create Subject', class: 'btn btn-dark' %>
+    <%= link_to 'Back', :back, class: 'btn btn-outline-dark' %>
   </div>
 <% end %>

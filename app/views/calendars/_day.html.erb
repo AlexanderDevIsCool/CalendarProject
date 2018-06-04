@@ -6,14 +6,13 @@
           <div id="<%= day.id %>" >
             <input data-autocomplete-source="/subjects" type="text" value="<%= @subjects.find_by(id: day.subjects_id).name%>" name="calendars[subject]" id="calendars_subject" class="lodgingComboSubjects">
             <input data-autocomplete-source="/teachers" type="text" value="<%= @teachers.find_by(id: day.teachers_id).surname %> <%=@teachers.find_by(id: day.teachers_id).name%>"name="calendars[teacher]" id="calendars_teacher" class="lodgingComboTeachers">
-            <%= link_to 'save item', 'javascript:void(0)', id: 'save-item-edit' %> |
+            <%= link_to 'save item', 'javascript:void(0)', id: 'save-item-edit' %>
             <%= link_to 'delete item', 'javascript:void(0)', id: 'delete-item' %>
           </div>
         </li>
-        <br>
       <% end %>
     <% end %>
   </ol>
-  <%= link_to 'Delete list', 'javascript:void(0);', class: 'btn btn-primary submit-btn',
+  <%= link_to 'Delete list', 'javascript:void(0);', class: 'btn btn-dark submit-btn',
               id: 'calendar-delete-btn'%>
 </div>

@@ -14,7 +14,7 @@ gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 gem 'webpacker', '~> 3.0'
-
+gem 'bootstrap', '~> 4.1.1'
 gem 'sass-rails', '~> 5.0'
 gem 'bootstrap-sass', '~> 3.3.7'
 gem 'font-awesome-sass'
@@ -67,8 +67,8 @@ group :test do
   gem 'chromedriver-helper'
 end
 
-group :production do
-  gem 'pg', '0.18.4'
-end
+# group :production do
+#   gem 'pg', '0.18.4'
+# end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

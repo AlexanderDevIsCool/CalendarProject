@@ -4,7 +4,7 @@
   <input data-autocomplete-source="/subjects" type="text" name="calendars[subject]" id="calendars_subject" class="lodgingComboSubjects">
   <input data-autocomplete-source="/teachers" type="text" name="calendars[teacher]" id="calendars_teacher" class="lodgingComboTeachers">
 
-  <%= link_to 'save item', 'javascript:void(0)', id: 'save-item' %> |
+  <%= link_to 'save item', 'javascript:void(0)', id: 'save-item' %>
   <%= link_to 'delete item', 'javascript:void(0)', id: 'delete-item' %>
 </div>
 
@@ -13,6 +13,4 @@
   <%= render 'day'%>
 </div>
 
-<%= link_to 'Back', calendars_path %> |
-<%= link_to 'Teachers', teachers_path %> |
-<%= link_to 'Subjects', subjects_path %> |
+<%= link_to 'Back', :back, class: 'btn btn-outline-dark' %>

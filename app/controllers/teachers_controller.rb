@@ -3,17 +3,18 @@ class TeachersController < ApplicationController
 
   def index
     @teachers = Teacher.all
-    @subject = Teacher.all
+    if params[:term]
     @subject = Teacher.order(:surname).where("name like ? OR surname like ?", "%#{params[:term]}%", "%#{params[:term]}%")
     arr1 = []
-    @subject.map(&:name).each do |name|
-      arr1 << name
+    @subject.map(&:surname).each do |surname|
+      arr1 << surname
     end
 
-    @subject.map(&:surname).each_with_index do |value, index|
-      arr1[index] += ' ' + value
+    @subject.map(&:name).each_with_index do |name, index|
+      arr1[index] += ' ' + name
     end
     render json: arr1
+      end
   end
 
   def show

@@ -24,7 +24,7 @@ class DayController < ApplicationController
 
     ((arr_lenght * 2)..(arr_lenght * 3 - 1)).each do |i|
       arr = supplies.flatten[i].split(' ')
-      teach_id << Teacher.find_by(surname: arr[1]).id
+      teach_id << Teacher.where("surname LIKE ? AND name LIKE ?", "%#{arr[0]}%","%#{arr[1]}%" )[0].id
     end
 
     (0..(arr_lenght-1)).each do |i|
@@ -57,7 +57,7 @@ class DayController < ApplicationController
 
     ((arr_lenght * 2)..(arr_lenght * 3 - 1)).each do |i|
       arr = supplies.flatten[i].split(' ')
-      teach_id << Teacher.find_by(surname: arr[1]).id
+      teach_id << Teacher.find_by(surname: arr[0]).id
     end
 
     (0..(arr_lenght-1)).each do |i|
