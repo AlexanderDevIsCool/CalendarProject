@@ -1,12 +1,8 @@
 <h1>Editing Calendar</h1>
 
 <div id="hidden-information", style="display: none">
-  <%= select_tag 'subject-name',
-                 options_for_select(@subjects.collect{ |u| [u.name, u.id] }) %>
-  <%= select_tag 'teacher-name',
-                 options_for_select(@teachers.collect{ |u| [u.name, u.id] })%>
-  <%= select_tag 'teacher-surname',
-                 options_for_select(@teachers.collect{ |u| [u.surname, u.id] })%>
+  <input data-autocomplete-source="/subjects" type="text" name="calendars[subject]" id="calendars_subject" class="lodgingComboSubjects">
+  <input data-autocomplete-source="/teachers" type="text" name="calendars[teacher]" id="calendars_teacher" class="lodgingComboTeachers">
 
   <%= link_to 'save item', 'javascript:void(0)', id: 'save-item' %> |
   <%= link_to 'delete item', 'javascript:void(0)', id: 'delete-item' %>

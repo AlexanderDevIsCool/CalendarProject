@@ -19,15 +19,16 @@ class DayController < ApplicationController
 
     arr_lenght = supplies.flatten.length / 3
     ((arr_lenght)..(arr_lenght + arr_lenght-1)).each do |i|
-      teach_id << supplies.flatten[i]
+      sub_id << Subject.find_by(name: supplies.flatten[i]).id
     end
 
     ((arr_lenght * 2)..(arr_lenght * 3 - 1)).each do |i|
-      cal_id << supplies.flatten[i]
+      arr = supplies.flatten[i].split(' ')
+      teach_id << Teacher.find_by(surname: arr[1]).id
     end
 
     (0..(arr_lenght-1)).each do |i|
-      sub_id << supplies.flatten[i]
+      cal_id << supplies.flatten[i]
       @day = Day.new(subjects_id: sub_id[i], teachers_id: teach_id[i], calendars_id: cal_id[i])
       @day.save
     end
@@ -51,15 +52,16 @@ class DayController < ApplicationController
 
     arr_lenght = supplies.flatten.length / 3
     ((arr_lenght)..(arr_lenght + arr_lenght-1)).each do |i|
-      teach_id << supplies.flatten[i]
+      sub_id << Subject.find_by(name: supplies.flatten[i]).id
     end
 
     ((arr_lenght * 2)..(arr_lenght * 3 - 1)).each do |i|
-      cal_id << supplies.flatten[i]
+      arr = supplies.flatten[i].split(' ')
+      teach_id << Teacher.find_by(surname: arr[1]).id
     end
 
     (0..(arr_lenght-1)).each do |i|
-      sub_id << supplies.flatten[i]
+      cal_id << supplies.flatten[i]
       @day.update(subjects_id: sub_id[i], teachers_id: teach_id[i], calendars_id: cal_id[i])
     end
   end

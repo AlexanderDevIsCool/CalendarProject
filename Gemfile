@@ -19,6 +19,7 @@ gem 'sass-rails', '~> 5.0'
 gem 'bootstrap-sass', '~> 3.3.7'
 gem 'font-awesome-sass'
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 gem 'simple_form'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'mini_racer', platforms: :ruby

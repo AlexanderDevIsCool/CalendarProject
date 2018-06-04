@@ -18,7 +18,7 @@ $(document).ready(function() {
         list.appendChild(li);
         list.appendChild(document.createElement('br'));
 
-        $(childrens[7]).on('click', function(){
+        $(childrens[5]).on('click', function(){
             if($(this).hasClass('disabled')){
                 e.preventDefault();
             } else {
@@ -27,9 +27,9 @@ $(document).ready(function() {
                 var teach_id = childa[3];
                 var arr = [[],[],[]];
                 var cl_id = document.getElementsByClassName('subjects-container');
-                arr[0].push(sub_id.options[sub_id.selectedIndex].value);
-                arr[1].push(teach_id.options[teach_id.selectedIndex].value);
-                arr[2].push(cl_id[0].id);
+                arr[0].push(cl_id[0].id);
+                arr[1].push(sub_id.value);
+                arr[2].push(teach_id.value);
                 $.ajax({
                     url: '/day/' + this.parentElement.id,
                     type: 'POST',
@@ -45,7 +45,7 @@ $(document).ready(function() {
             }
         });
 
-        $(childrens[9]).on('click',function(){
+        $(childrens[7]).on('click',function(){
             if(confirm('r u sure ?')) {
                 var parent = this.parentElement.id;
                 if((typeof parent !== 'undefined') &&
@@ -61,6 +61,7 @@ $(document).ready(function() {
                 this.parentElement.parentElement.remove();
             }
         });
+
     });
 
 
@@ -73,16 +74,16 @@ $(document).ready(function() {
             var teach_id = childa[3];
             var arr = [[],[],[]];
             var cl_id = document.getElementsByClassName('subjects-container');
-            arr[0].push(sub_id.options[sub_id.selectedIndex].value);
-            arr[1].push(teach_id.options[teach_id.selectedIndex].value);
-            arr[2].push(cl_id[0].id);
+            arr[0].push(cl_id[0].id);
+            arr[1].push(sub_id.value);
+            arr[2].push(teach_id.value);
             $.ajax({
                 url: '/day/' + this.parentElement.id,
                 type: 'PATCH',
                 data: {day: {data_ids: arr}}
             });
             $(this).addClass('disabled');
-            $(this).setAttribute('id', 'save-item-edit');
+            this.setAttribute('id', 'save-item-edit');
         }
     });
 
@@ -92,9 +93,9 @@ $(document).ready(function() {
             var teach_id = childa[3];
             var arr = [[],[],[]];
             var cl_id = document.getElementsByClassName('subjects-container');
-            arr[0].push(sub_id.options[sub_id.selectedIndex].value);
-            arr[1].push(teach_id.options[teach_id.selectedIndex].value);
-            arr[2].push(cl_id[0].id);
+            arr[0].push(cl_id[0].id);
+            arr[1].push(sub_id.value);
+            arr[2].push(teach_id.value);
             $.ajax({
                 url: '/day/' + this.parentElement.id,
                 type: 'PATCH',
@@ -120,17 +121,18 @@ $(document).ready(function() {
     $(document).on('click', '#calendar-send-btn', function(){
             var arr = [[], [], []];
             var sub_list = document.getElementById('subjects-list');
+            var sub_container = sub_list.parentElement;
             var sub_list_length = sub_list.childElementCount;
             for (var i = 1; i < sub_list_length; i += 2) {
                 var li = sub_list.childNodes[i].childNodes[0];
                     arr[0].push(
-                        li.childNodes[1].options[li.childNodes[1].selectedIndex].value
+                        sub_container.id
                     );
                     arr[1].push(
-                        li.childNodes[3].options[li.childNodes[3].selectedIndex].value
+                        li.childNodes[1].value
                     );
                     arr[2].push(
-                        li.childNodes[5].options[li.childNodes[5].selectedIndex].value
+                        li.childNodes[3].value
                     );
 
             }
@@ -152,6 +154,22 @@ $(document).ready(function() {
                 }
             });
         }
+    });
+
+    $(document).on('click', '.lodgingComboSubjects', function(){
+        $(".lodgingComboSubjects").each(function() {
+            $(this).autocomplete({
+                source: $(this).data('autocomplete-source')
+            });
+        });
+    });
+
+    $(document).on('click', '.lodgingComboTeachers', function(){
+        $(".lodgingComboTeachers").each(function() {
+            $(this).autocomplete({
+                source: $(this).data('autocomplete-source')
+            });
+        });
     });
 
 });

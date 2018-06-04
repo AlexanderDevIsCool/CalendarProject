@@ -4,18 +4,8 @@
       <% @day.each do |day|%>
         <li>
           <div id="<%= day.id %>" >
-            <%= select_tag 'subject-name',
-                           options_for_select(@subjects.collect{ |u| [u.name, u.id] },
-                                              selected: day.subjects_id),
-                           id: 'subject-name-collection'%>
-            <%= select_tag 'teacher-name',
-                           options_for_select(@teachers.collect{ |u| [u.name, u.id] },
-                                              selected: day.teachers_id),
-                           id: 'teacher-name-collection'%>
-            <%= select_tag 'teacher-surname',
-                           options_for_select(@teachers.collect{ |u| [u.surname, u.id] },
-                                              selected: day.teachers_id),
-                           id: 'teacher-surname-collection'%> |
+            <input data-autocomplete-source="/subjects" type="text" value="<%= @subjects.find_by(id: day.subjects_id).name%>" name="calendars[subject]" id="calendars_subject" class="lodgingComboSubjects">
+            <input data-autocomplete-source="/teachers" type="text" value="<%= @teachers.find_by(id: day.teachers_id).surname %> <%=@teachers.find_by(id: day.teachers_id).name%>"name="calendars[teacher]" id="calendars_teacher" class="lodgingComboTeachers">
             <%= link_to 'save item', 'javascript:void(0)', id: 'save-item-edit' %> |
             <%= link_to 'delete item', 'javascript:void(0)', id: 'delete-item' %>
           </div>
