@@ -1,11 +1,8 @@
 class CalendarsController < ApplicationController
   def index
     date = params[:date] ||= Date.today.to_s
-    p params[:date]
     @calendar = Calendar.find_by(date: date)
     @day = Day.where(calendars_id: @calendar.id) unless @calendar.nil?
-    p "CALENDAR: #{@calendar.nil?}"
-    p "DAY: #{@day.nil?}"
     unless @day.nil?
     @teachers = Teacher.where(id: @day.map(&:teachers_id))
     @subjects = Subject.where(id: @day.map(&:subjects_id))
@@ -44,6 +41,21 @@ class CalendarsController < ApplicationController
     Day.where(calendars_id: params[:id]).destroy_all
     Calendar.find_by(id: params[:id]).destroy
     redirect_to calendars_path
+  end
+
+  def ajax_for_index
+    date = params[:date] ||= Date.today.to_s
+    @calendar = Calendar.find_by(date: date)
+    @day = Day.where(calendars_id: @calendar.id) unless @calendar.nil?
+    unless @day.nil?
+      @teachers = Teacher.where(id: @day.map(&:teachers_id))
+      @subjects = Subject.where(id: @day.map(&:subjects_id))
+    end
+    respond_to do |format|
+      format.html { redirect_to calendars_path }
+      format.json { render :index, status: :created, location: calendars_path }
+      format.js
+    end
   end
 
   private

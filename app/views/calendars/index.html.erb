@@ -4,24 +4,10 @@
   <%= simple_form_for :calendar, method: :get do |f| %>
     <%= f.input :date, as: :string, input_html: { class: 'datepicker'} %>
   <%end%>
-  <% unless @calendar.nil? %>
-    <div class="subjects-container" id="<%= @calendar.id %>">
-      <ol id="subjects-list">
-        <% unless @day.nil? %>
-          <div class="container-ajax" id="container">
-            <%= render 'calendar' %>
-          </div>
-        <% end %>
-        <%= link_to 'Edit list', edit_calendar_path(@calendar.id), class: 'btn btn-primary submit-btn',
-                    id: 'edit-list' %> |
-        <%= link_to 'Delete list', 'javascript:void(0);', class: 'btn btn-primary submit-btn',
-                    id: 'calendar-delete-btn' %>
-      </ol>
-    </div>
-  <% else %>
-    <%= link_to 'New list', 'javascript:void(0)', class: 'btn btn-primary submit-btn',
-                id: 'create-list' %> |
-  <% end %>
+
+  <div class="container-ajax" id="container">
+    <%= render 'calendar' %>
+  </div>
   <%= link_to 'Create subject', new_subject_path %> |
   <%= link_to 'Add teacher', new_teacher_path %>
 </div>

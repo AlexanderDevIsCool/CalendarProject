@@ -1,20 +1,41 @@
-<% @day.each do |day|%>
-  <li>
-    <div id="<%= day.id %>" >
-      <%= select_tag 'subject-name',
-                     options_for_select(@subjects.collect{ |u| [u.name, u.id] },
-                                        selected: day.subjects_id),
-                     id: 'subject-name-collection'%>
-      <%= select_tag 'teacher-name',
-                     options_for_select(@teachers.collect{ |u| [u.name, u.id] },
-                                        selected: day.teachers_id),
-                     id: 'teacher-name-collection'%>
-      <%= select_tag 'teacher-surname',
-                     options_for_select(@teachers.collect{ |u| [u.surname, u.id] },
-                                        selected: day.teachers_id),
-                     id: 'teacher-surname-collection'%> |
-    </div>
-  </li>
-  <br>
-  <br>
+<% if @calendar.nil? %>
+  <%= link_to 'create list', 'javascript:void(0)', id: 'create-list' %>
+<% elsif @day.nil? %>
+  <div class="subjects-container" id="<%= @calendar.id %>">
+    <h1>List is empty</h1>
+    <ol id="subjects-list">
+
+    </ol>
+    <br>
+    <%= link_to 'Edit list', edit_calendar_path(@calendar.id), class: 'btn btn-primary submit-btn',
+                id: 'edit-list' %> |
+    <%= link_to 'Delete list', 'javascript:void(0);', class: 'btn btn-primary submit-btn',
+                id: 'calendar-delete-btn' %>
+  </div>
+<% else %>
+  <div class="subjects-container" id="<%= @calendar.id %>">
+    <ol id="subjects-list">
+      <% @day.each do |day|%>
+        <li>
+          <div id="<%= day.id %>" >
+            <%= select_tag 'subject-name',
+                           options_for_select(@subjects.collect{ |u| [u.name, u.id] }),
+                           id: 'subject-name-collection', selected: day.subjects_id %>
+            <%= select_tag 'teacher-name',
+                           options_for_select(@teachers.collect{ |u| [u.name, u.id] }),
+                           id: 'teacher-name-collection', selected: day.teachers_id %>
+            <%= select_tag 'teacher-surname',
+                           options_for_select(@teachers.collect{ |u| [u.surname, u.id] }),
+                           id: 'teacher-surname-collection', selected: day.teachers_id %>
+          </div>
+        </li>
+        <br>
+        <br>
+      <% end %>
+    </ol>
+    <%= link_to 'Edit list', edit_calendar_path(@calendar.id), class: 'btn btn-primary submit-btn',
+                id: 'edit-list' %> |
+    <%= link_to 'Delete list', 'javascript:void(0);', class: 'btn btn-primary submit-btn',
+                id: 'calendar-delete-btn' %>
+  </div>
 <% end %>

@@ -5,8 +5,9 @@ flatpickr(".datepicker", {
     altInput: true,
     onChange: function(selectedDates, dateStr, instance) {
         $.ajax({
-            url: '/calendars?date=' + dateStr,
+            url: '/ajax_for_index?date=' + dateStr,
             type: 'GET',
+            dataType: 'script',
             success: function(r){
             }
         });
