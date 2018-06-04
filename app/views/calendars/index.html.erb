@@ -5,9 +5,14 @@
     <%= f.input :date, as: :string, input_html: { class: 'datepicker'} %>
   <%end%>
 
-  <div class="container-ajax" id="container">
-    <%= render 'calendar' %>
+
+   <div class="content">
+    <div class="container-ajax" id="container">
+      <%= render 'calendar' %>
+    </div>
+   </div>
+  <div class="footer">
+      <%= link_to 'Create subject', new_subject_path, class: 'btn btn-dark' %>
+      <%= link_to 'Add teacher', new_teacher_path, class: 'btn btn-dark' %>
   </div>
-  <%= link_to 'Create subject', new_subject_path %> |
-  <%= link_to 'Add teacher', new_teacher_path %>
 </div>

@@ -13,15 +13,15 @@
 
   <div class="field">
     <%= form.label :date %>
-    <%= form.text_field :date %>
+    <%= form.text_field :date, class: 'form-control' %>
   </div>
 
   <div class="field">
     <%= form.label :references %>
-    <%= form.text_field :references %>
+    <%= form.text_field :references, class: 'form-control' %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit 'Save', class: 'btn btn-dark' %>
   </div>
 <% end %>

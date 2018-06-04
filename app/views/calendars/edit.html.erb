@@ -8,7 +8,7 @@
   <%= select_tag 'teacher-surname',
                  options_for_select(@teachers.collect{ |u| [u.surname, u.id] })%>
 
-  <%= link_to 'save item', 'javascript:void(0)', id: 'save-item' %> |
+  <%= link_to 'save item', 'javascript:void(0)', id: 'save-item' %>
   <%= link_to 'delete item', 'javascript:void(0)', id: 'delete-item' %>
 </div>
 
@@ -17,6 +17,4 @@
   <%= render 'day'%>
 </div>
 
-<%= link_to 'Back', calendars_path %> |
-<%= link_to 'Teachers', teachers_path %> |
-<%= link_to 'Subjects', subjects_path %> |
+<%= link_to 'Back', :back, class: 'btn btn-outline-dark' %>
