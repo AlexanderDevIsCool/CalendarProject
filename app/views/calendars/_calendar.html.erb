@@ -1,6 +1,7 @@
+<div class="content">
 <%= javascript_include_tag('calendars') %>
 <% if @calendar.nil? %>
-  <%= link_to 'Create list', 'javascript:void(0)', id: 'create-list', class: 'btn btn-dark' %>
+  <%= link_to 'Create list', 'javascript:void(0)', id: 'create-list', class: 'btn btn-success' %>
 <% elsif @day.nil? %>
   <div class="subjects-container" id="<%= @calendar.id %>">
     <h1>List is empty</h1>
@@ -20,15 +21,15 @@
             <%= select_tag 'subject-name',
                            options_for_select(@subjects.collect{ |u| [u.name, u.id] },
                                               selected: day.subjects_id),
-                           id: 'subject-name-collection' %>
+                           id: 'subject-name-collection', class: 'dropdown-item' %>
             <%= select_tag 'teacher-name',
                            options_for_select(@teachers.collect{ |u| [u.name, u.id] },
                                               selected: day.teachers_id),
-                           id: 'teacher-name-collection'%>
+                           id: 'teacher-name-collection', class: 'dropdown-item'%>
             <%= select_tag 'teacher-surname',
                            options_for_select(@teachers.collect{ |u| [u.surname, u.id] },
                                               selected: day.teachers_id),
-                           id: 'teacher-surname-collection'%>
+                           id: 'teacher-surname-collection', class: 'dropdown-item'%>
           </div>
         </li>
         <br>
@@ -41,3 +42,4 @@
                 id: 'calendar-delete-btn' %>
   </div>
 <% end %>
+</div>

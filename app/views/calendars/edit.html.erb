@@ -1,20 +1,21 @@
 <h1>Editing Calendar</h1>
 
-<div id="hidden-information", style="display: none">
-  <%= select_tag 'subject-name',
-                 options_for_select(@subjects.collect{ |u| [u.name, u.id] }) %>
-  <%= select_tag 'teacher-name',
-                 options_for_select(@teachers.collect{ |u| [u.name, u.id] })%>
-  <%= select_tag 'teacher-surname',
-                 options_for_select(@teachers.collect{ |u| [u.surname, u.id] })%>
+<div class="content">
+  <div id="hidden-information", style="display: none">
+    <%= select_tag 'subject-name',
+                  options_for_select(@subjects.collect{ |u| [u.name, u.id] }), class: 'dropdown-item' %>
+    <%= select_tag 'teacher-name',
+                  options_for_select(@teachers.collect{ |u| [u.name, u.id] }), class: 'dropdown-item' %>
+    <%= select_tag 'teacher-surname',
+                  options_for_select(@teachers.collect{ |u| [u.surname, u.id] }), class: 'dropdown-item' %>
 
-  <%= link_to 'save item', 'javascript:void(0)', id: 'save-item' %>
-  <%= link_to 'delete item', 'javascript:void(0)', id: 'delete-item' %>
+    <%= link_to 'Save item', 'javascript:void(0)', id: 'save-item', class: 'btn btn-outline-success btn-sm' %>
+    <%= link_to 'Delete item', 'javascript:void(0)', id: 'delete-item', class: 'btn btn-outline-danger btn-sm' %>
+  </div>
+
+    <%= link_to 'Add subject','javascript:void(0);',id: 'subject-add', class: 'btn btn-success' %>
 </div>
 
-  <li><%= link_to 'Add subject','javascript:void(0);',id: 'subject-add'  %></li>
-<div class="day-ajax">
-  <%= render 'day'%>
-</div>
-
-<%= link_to 'Back', :back, class: 'btn btn-outline-dark' %>
+  <div class="day-ajax">
+    <%= render 'day'%>
+  </div>
