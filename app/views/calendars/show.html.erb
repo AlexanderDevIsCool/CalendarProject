@@ -1,8 +1,7 @@
 <h1>New Calendar</h1>
-<<<<<<< HEAD
-=======
+
 <div class="content">
-  <%= link_to 'Add subject','javascript:void(0);',id: 'subject-add', class: 'btn btn-dark' %>
+  <%= link_to 'Add subject','javascript:void(0);', data: { turbolinks: false }, id: 'subject-add', class: 'btn btn-dark' %>
 </div>
 >>>>>>> 19dbe07... Normal Design
 <div class="subjects-container" id="<%= @calendar.id %>">
@@ -10,21 +9,19 @@
 </div>
 <br>
 
-<<<<<<< HEAD
-
 <div id="hidden-information" style="display: none">
   <input data-autocomplete-source="/subjects" type="text" name="calendars[subject]" id="calendars_subject" class="lodgingComboSubjects">
   <input data-autocomplete-source="/teachers" type="text" name="calendars[teacher]" id="calendars_teacher" class="lodgingComboTeachers">
   <%= link_to 'delete item', 'javascript:void(0)', id: 'delete-item' %>
 </div>
-=======
 <div class="footer">
-  <%= link_to 'Save list', calendars_path, class: 'btn btn-success submit-btn',
+  <%= link_to 'Save list', calendars_path, data: { turbolinks: false }, class: 'btn btn-success submit-btn',
               id: 'calendar-send-btn' %>
-  <%= link_to 'Delete list', 'javascript:void(0);', class: 'btn btn-danger submit-btn',
+  <%= link_to 'Delete list', 'javascript:void(0);', data: { turbolinks: false }, class: 'btn btn-danger submit-btn',
               id: 'calendar-delete-btn'%>
-  <%= link_to 'Back', calendars_path, class: 'btn btn-outline-dark'%>
+  <%= link_to 'Back', calendars_path, data: { turbolinks: false }, class: 'btn btn-outline-dark'%>
 </div>
 
 <br>
->>>>>>> 19dbe07... Normal Design
+
+

@@ -4,13 +4,13 @@
   <input data-autocomplete-source="/subjects" type="text" name="calendars[subject]" id="calendars_subject" class="lodgingComboSubjects">
   <input data-autocomplete-source="/teachers" type="text" name="calendars[teacher]" id="calendars_teacher" class="lodgingComboTeachers">
 
-  <%= link_to 'save item', 'javascript:void(0)', id: 'save-item' %>
-  <%= link_to 'delete item', 'javascript:void(0)', id: 'delete-item' %>
+  <%= link_to 'save item', 'javascript:void(0)',  data: { turbolinks: false }, id: 'save-item' %>
+  <%= link_to 'delete item', 'javascript:void(0)',  data: { turbolinks: false }, id: 'delete-item' %>
 </div>
 
-  <li><%= link_to 'Add subject','javascript:void(0);',id: 'subject-add'  %></li>
+  <li><%= link_to 'Add subject','javascript:void(0);',  data: { turbolinks: false }, id: 'subject-add'  %></li>
 <div class="day-ajax">
   <%= render 'day'%>
 </div>
 
-<%= link_to 'Back', :back, class: 'btn btn-outline-dark' %>
+<%= link_to 'Back', :back,  data: { turbolinks: false }, class: 'btn btn-outline-dark' %>

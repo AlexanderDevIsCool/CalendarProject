@@ -1,12 +1,13 @@
 var list = null;
 var ready;
+
 ready = function() {
 
-    list = document.getElementById('subjects-list');
+    $(document).on ("click", '#subject-add', function () {
+        list = document.getElementById('subjects-list');
 
-    var hidden_information = document.getElementById('hidden-information');
+        var hidden_information = document.getElementById('hidden-information');
 
-    $('#subject-add').on('click', function(){
         var li = document.createElement("li");
         var element = hidden_information.cloneNode(true);
 
@@ -61,23 +62,6 @@ ready = function() {
             }
         });
 
-        $(childrens[7]).on('click',function(){
-            if(confirm('r u sure ?')) {
-                var parent = this.parentElement.id;
-                if((typeof parent !== 'undefined') &&
-                    parent.isEmptyObject && parent != null && parent !== '') {
-                    $.ajax({
-                        url: '/day',
-                        type: 'DELETE',
-                        data: {
-                            subjects_id: $(this).parent().id
-                        }
-                    });
-                }
-                this.parentElement.parentElement.remove();
-            }
-        });
-
     });
 
     $(document).on ("click", '#save-item-edit', function () {
@@ -98,6 +82,7 @@ ready = function() {
 
     $(document).on ("click", '#delete-item', function () {
         if(confirm('r u sure ?')) {
+            alert('HSSS');
             var parent = this.parentElement.id;
             if((typeof parent !== 'undefined') &&
                 parent != null && parent !== '') {
@@ -135,7 +120,7 @@ ready = function() {
             });
     });
 
-    $('#calendar-delete-btn').on('click', function(){
+    $(document).on('click', '#calendar-delete-btn', function() {
         if(confirm('r u sure ?')) {
             var cl_id = document.getElementsByClassName('subjects-container');
             $.ajax({
