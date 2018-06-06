@@ -1,7 +1,8 @@
+<<<<<<< HEAD
 <h1>New Calendar</h1>
 
 <div class="content">
-  <%= link_to 'Add subject','javascript:void(0);', data: { turbolinks: false }, id: 'subject-add', class: 'btn btn-dark' %>
+  <%= link_to 'Add subject','javascript:void(0);', data: { turbolinks: false }, id: 'subject-add', class: 'btn btn-success' %>
 </div>
 >>>>>>> 19dbe07... Normal Design
 <div class="subjects-container" id="<%= @calendar.id %>">
@@ -12,7 +13,7 @@
 <div id="hidden-information" style="display: none">
   <input data-autocomplete-source="/subjects" type="text" name="calendars[subject]" id="calendars_subject" class="lodgingComboSubjects">
   <input data-autocomplete-source="/teachers" type="text" name="calendars[teacher]" id="calendars_teacher" class="lodgingComboTeachers">
-  <%= link_to 'delete item', 'javascript:void(0)', id: 'delete-item' %>
+  <%= link_to 'delete item', 'javascript:void(0)', id: 'delete-item', class: 'btn btn-outline-danger btn-sm' %>
 </div>
 <div class="footer">
   <%= link_to 'Save list', calendars_path, data: { turbolinks: false }, class: 'btn btn-success submit-btn',
@@ -23,5 +24,3 @@
 </div>
 
 <br>
-
-
