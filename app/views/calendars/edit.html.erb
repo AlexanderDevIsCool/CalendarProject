@@ -1,16 +1,22 @@
 <h1>Editing Calendar</h1>
 
-<div id="hidden-information", style="display: none">
-  <input data-autocomplete-source="/subjects" type="text" name="calendars[subject]" id="calendars_subject" class="lodgingComboSubjects">
-  <input data-autocomplete-source="/teachers" type="text" name="calendars[teacher]" id="calendars_teacher" class="lodgingComboTeachers">
 
-  <%= link_to 'save item', 'javascript:void(0)',  data: { turbolinks: false }, id: 'save-item', class: 'btn btn-outline-success btn-sm' %>
-  <%= link_to 'delete item', 'javascript:void(0)',  data: { turbolinks: false }, id: 'delete-item', class: 'btn btn-outline-danger btn-sm' %>
+<div class="content">
+    <%= link_to 'Add subject','javascript:void(0);',  data: { turbolinks: false }, id: 'subject-add', class: 'btn btn-success'  %>
+  <div id="hidden-information", style="display: none; margin-top: 10px; margin-right: 30px">
+    <input data-autocomplete-source="/subjects" type="text" name="calendars[subject]" id="calendars_subject" class="lodgingComboSubjects">
+    <input data-autocomplete-source="/teachers" type="text" name="calendars[teacher]" id="calendars_teacher" class="lodgingComboTeachers">
+    <div class="help-container" style="margin-left: 30px">
+      <%= link_to 'Save item', 'javascript:void(0)',  data: { turbolinks: false }, id: 'save-item', class: 'btn btn-outline-success btn-sm' %>
+      <%= link_to 'Delete item', 'javascript:void(0)',  data: { turbolinks: false }, id: 'delete-item', class: 'btn btn-outline-danger btn-sm' %>
+    </div>
+  </div>
+
 </div>
 
-  <li><%= link_to 'Add subject','javascript:void(0);',  data: { turbolinks: false }, id: 'subject-add', class: 'btn btn-success'  %></li>
-<div class="day-ajax">
-  <%= render 'day'%>
+<div class="footer">
+  <div class="day-ajax">
+    <%= render 'day'%>
+  </div>
+  <%#= link_to 'Back', :back,  data: { turbolinks: false }, class: 'btn btn-outline-dark' %>
 </div>
-
-<%= link_to 'Back', :back,  data: { turbolinks: false }, class: 'btn btn-outline-dark' %>

@@ -6,13 +6,17 @@
 <div class="subjects-container" id="<%= @calendar.id %>">
   <ol id="subjects-list"></ol>
 </div>
-<br>
 
 <div id="hidden-information" style="display: none">
-  <input data-autocomplete-source="/subjects" type="text" name="calendars[subject]" id="calendars_subject" class="lodgingComboSubjects">
-  <input data-autocomplete-source="/teachers" type="text" name="calendars[teacher]" id="calendars_teacher" class="lodgingComboTeachers">
-  <%= link_to 'delete item', 'javascript:void(0)', id: 'delete-item', class: 'btn btn-outline-danger btn-sm' %>
+  <div class="help-container">
+    <input data-autocomplete-source="/subjects" type="text" name="calendars[subject]" id="calendars_subject" class="lodgingComboSubjects">
+    <input data-autocomplete-source="/teachers" type="text" name="calendars[teacher]" id="calendars_teacher" class="lodgingComboTeachers">
+  </div>
+  <div style="display: flex; justify-content: center; margin-right: 20px; margin-top: 10px;">
+    <%= link_to 'Delete item', 'javascript:void(0)', id: 'delete-item', class: 'btn btn-outline-danger btn-sm' %>
+  </div>
 </div>
+
 <div class="footer">
   <%= link_to 'Save list', calendars_path, data: { turbolinks: false }, class: 'btn btn-success submit-btn',
               id: 'calendar-send-btn' %>
