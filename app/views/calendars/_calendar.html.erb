@@ -1,5 +1,5 @@
 <% if @calendar.nil? %>
-  <%= link_to 'Create list', 'javascript:void(0)', data: { turbolinks: false }, id: 'create-list', class: 'btn btn-dark' %>
+  <%= link_to 'Create list', 'javascript:void(0)', id: 'create-list', class: 'btn btn-dark' %>
 <% elsif @day.nil? %>
   <div class="subjects-container" id="<%= @calendar.id %>">
     <h1>List is empty</h1>

@@ -19,7 +19,6 @@ ready = function() {
 
         li.appendChild(element);
         list.appendChild(li);
-        list.appendChild(document.createElement('br'));
 
         $(childrens[5]).on('click', function(){
             if($(this).is('save-item-edit')) {
@@ -81,8 +80,7 @@ ready = function() {
     });
 
     $(document).on ("click", '#delete-item', function () {
-        if(confirm('r u sure ?')) {
-            alert('HSSS');
+        if(confirm('are you sure ?')) {
             var parent = this.parentElement.id;
             if((typeof parent !== 'undefined') &&
                 parent != null && parent !== '') {
@@ -100,7 +98,7 @@ ready = function() {
             var sub_list = document.getElementById('subjects-list');
             var sub_container = sub_list.parentElement;
             var sub_list_length = sub_list.childElementCount;
-            for (var i = 0; i < sub_list_length; i += 2) {
+            for (var i = 0; i < sub_list_length; i += 1) {
                 var li = sub_list.childNodes[i].childNodes[0];
                     arr[0].push(
                         sub_container.id
@@ -121,7 +119,7 @@ ready = function() {
     });
 
     $(document).on('click', '#calendar-delete-btn', function() {
-        if(confirm('r u sure ?')) {
+        if(confirm('are you sure ?')) {
             var cl_id = document.getElementsByClassName('subjects-container');
             $.ajax({
                 url: '/calendars/' + cl_id[0].id,
