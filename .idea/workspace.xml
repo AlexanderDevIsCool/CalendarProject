@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2aabbe7a-5ad7-4c00-9632-fca76712c4e3" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/Gemfile.lock" afterPath="$PROJECT_DIR$/Gemfile.lock" />
-      <change beforePath="$PROJECT_DIR$/app/assets/javascripts/calendars.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/calendars.js" />
-      <change beforePath="$PROJECT_DIR$/app/javascript/plugins/flatpickr.js" afterPath="$PROJECT_DIR$/app/javascript/plugins/flatpickr.js" />
-      <change beforePath="$PROJECT_DIR$/app/views/calendars/_calendar.html.erb" afterPath="$PROJECT_DIR$/app/views/calendars/_calendar.html.erb" />
-      <change beforePath="$PROJECT_DIR$/app/views/calendars/_day.html.erb" afterPath="$PROJECT_DIR$/app/views/calendars/_day.html.erb" />
-      <change beforePath="$PROJECT_DIR$/app/views/calendars/show.html.erb" afterPath="$PROJECT_DIR$/app/views/calendars/show.html.erb" />
-    </list>
+    <list default="true" id="2aabbe7a-5ad7-4c00-9632-fca76712c4e3" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.bundle/" />
     <ignored path="$PROJECT_DIR$/components/" />
     <ignored path="$PROJECT_DIR$/public/system/" />
@@ -295,13 +287,6 @@
               <item name="CalendarProject" type="b2602c69:ProjectViewProjectNode" />
               <item name="CalendarProject" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="javascript" type="462c0819:PsiDirectoryNode" />
-              <item name="plugins" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="CalendarProject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CalendarProject" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="jobs" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -501,13 +486,12 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="122913000" />
+    <option name="totallyTimeSpent" value="123830000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="364" y="76" width="1730" height="945" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39298454" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39298454" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
