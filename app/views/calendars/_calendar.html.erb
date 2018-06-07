@@ -18,6 +18,7 @@
           <div id="<%= day.id %>" >
             <input data-autocomplete-source="/subjects" type="text" disabled value="<%= @subjects.find_by(id: day.subjects_id).name%>" name="calendars[subject]" id="calendars_subject" class="lodgingComboSubjects">
             <input data-autocomplete-source="/teachers" type="text" disabled value="<%= @teachers.find_by(id: day.teachers_id).surname %> <%=@teachers.find_by(id: day.teachers_id).name%>"name="calendars[teacher]" id="calendars_teacher" class="lodgingComboTeachers">
+            <input type="text" disabled value="<%= day.auditorium%>" name="calendars[auditorium]" id="calendars_auditorium">
           </div>
         </li>
         <br>

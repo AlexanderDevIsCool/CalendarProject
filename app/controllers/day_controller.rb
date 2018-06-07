@@ -9,6 +9,7 @@ class DayController < ApplicationController
     supplies = []
     sub_id = []
     teach_id = []
+    auditory_id = []
     cal_id = []
 
     day_params.each do |key, value|
@@ -27,9 +28,15 @@ class DayController < ApplicationController
       teach_id << Teacher.where("surname LIKE ? AND name LIKE ?", "%#{arr[0]}%","%#{arr[1]}%" )[0].id
     end
 
+    ((arr_lenght * 3)..(arr_lenght * 4 - 1)).each do |i|
+      arr = supplies.flatten[i].split(' ')
+      auditory_id << arr[0]
+    end
+
     (0..(arr_lenght-1)).each do |i|
       cal_id << supplies.flatten[i]
-      @day = Day.new(subjects_id: sub_id[i], teachers_id: teach_id[i], calendars_id: cal_id[i])
+      @day = Day.new(subjects_id: sub_id[i], teachers_id: teach_id[i],
+                     calendars_id: cal_id[i], auditorium: auditory_id[i])
       @day.save
     end
   end
@@ -42,6 +49,7 @@ class DayController < ApplicationController
     supplies = []
     sub_id = []
     teach_id = []
+    auditory_id = []
     cal_id = []
 
     day_params.each do |key, value|
@@ -50,7 +58,7 @@ class DayController < ApplicationController
       end
     end
 
-    arr_lenght = supplies.flatten.length / 3
+    arr_lenght = supplies.flatten.length / 4
     ((arr_lenght)..(arr_lenght + arr_lenght-1)).each do |i|
       sub_id << Subject.find_by(name: supplies.flatten[i]).id
     end
@@ -60,9 +68,15 @@ class DayController < ApplicationController
       teach_id << Teacher.find_by(surname: arr[0]).id
     end
 
+    ((arr_lenght * 3)..(arr_lenght * 4 - 1)).each do |i|
+      arr = supplies.flatten[i].split(' ')
+      auditory_id << arr[0]
+    end
+
     (0..(arr_lenght-1)).each do |i|
       cal_id << supplies.flatten[i]
-      @day.update(subjects_id: sub_id[i], teachers_id: teach_id[i], calendars_id: cal_id[i])
+      @day.update(subjects_id: sub_id[i], teachers_id: teach_id[i],
+                  calendars_id: cal_id[i], auditorium: auditory_id[i])
     end
   end
 
@@ -78,6 +92,6 @@ class DayController < ApplicationController
 
   def day_params
     #params.require(:day).permit(:subjects_id, :teachers_id, :calendars_id)
-    params.require(:day).permit(data_ids: ['0':[], '1':[], '2': []])
+    params.require(:day).permit(data_ids: ['0':[], '1':[], '2': [], '3': []])
   end
 end

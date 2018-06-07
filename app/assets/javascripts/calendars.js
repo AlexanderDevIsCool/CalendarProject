@@ -43,11 +43,13 @@ ready = function() {
                 var childa = this.parentElement.parentElement.childNodes;
                 var sub_id = childa[1];
                 var teach_id = childa[3];
-                var arr = [[],[],[]];
+                var auditory_value = childa[5];
+                var arr = [[],[],[],[]];
                 var cl_id = document.getElementsByClassName('subjects-container');
                 arr[0].push(cl_id[0].id);
                 arr[1].push(sub_id.value);
                 arr[2].push(teach_id.value);
+                arr[3].push(auditory_value.value);
                 $.ajax({
                     url: '/day/' + this.parentElement.parentElement.id,
                     type: 'POST',
@@ -70,11 +72,13 @@ ready = function() {
             var childa = this.parentElement.parentElement.childNodes;
             var sub_id = childa[1];
             var teach_id = childa[3];
-            var arr = [[],[],[]];
+            var auditory_value = childa[5];
+            var arr = [[],[],[],[]];
             var cl_id = document.getElementsByClassName('subjects-container');
             arr[0].push(cl_id[0].id);
             arr[1].push(sub_id.value);
             arr[2].push(teach_id.value);
+            arr[3].push(auditory_value.value);
             $.ajax({
                 url: '/day/' + this.parentElement.parentElement.id,
                 type: 'PATCH',
@@ -97,7 +101,7 @@ ready = function() {
     });
 
     $(document).on('click', '#calendar-send-btn', function(){
-            var arr = [[], [], []];
+            var arr = [[], [], [],[]];
             var sub_list = document.getElementById('subjects-list');
             var sub_container = sub_list.parentElement;
             var sub_list_length = sub_list.childElementCount;
@@ -113,6 +117,9 @@ ready = function() {
                         li.childNodes[3].value
                     );
 
+                    arr[3].push(
+                        li.childNodes[5].value
+                    );
             }
             $.ajax({
                 url: '/day',

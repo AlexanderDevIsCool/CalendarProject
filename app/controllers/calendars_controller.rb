@@ -61,9 +61,6 @@ class CalendarsController < ApplicationController
   end
 
   def ajax_for_day
-    100.times(){
-      p ''
-    }
     @calendar = Calendar.find_by(id: params[:id])
     @day = Day.where(calendars_id: @calendar.id)
     @teachers = Teacher.all
