@@ -51,14 +51,15 @@ ready = function() {
                 $.ajax({
                     url: '/day/' + this.parentElement.parentElement.id,
                     type: 'POST',
-                    data: {day: {data_ids: arr}}
+                    data: {day: {data_ids: arr}},
+                    success: function () {
+                        $.ajax({
+                            url: '/ajax_for_day?id=' + cl_id[0].id,
+                            type: 'GET',
+                            dataType: 'script',
+                        });
+                    }
                 });
-                $.ajax({
-                    url: '/ajax_for_day?id=' + cl_id[0].id,
-                    type: 'GET',
-                    dataType: 'script',
-                });
-
                 this.setAttribute('id', 'save-item-edit');
             }
         });
