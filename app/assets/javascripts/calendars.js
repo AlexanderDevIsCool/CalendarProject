@@ -15,30 +15,32 @@ ready = function() {
         element.setAttribute('id', '');
         element.style.display = 'block';
 
-        var childrens = element.childNodes;
-
         li.appendChild(element);
         list.appendChild(li);
 
-        $(childrens[5]).on('click', function(){
+
+        var childrens = element.childNodes[5].childNodes;
+
+
+        $(childrens[1]).on('click', function(){
             if($(this).is('save-item-edit')) {
                 e.preventDefault();
-            } else if('' + childrens[7] === 'undefined') {
-                    var parent = this.parentElement.id;
+            } else if('' + childrens[3] === 'undefined') {
+                    var parent = this.parentElement.parentElement.id;
                     if((typeof parent !== 'undefined') &&
                         parent.isEmptyObject && parent != null && parent !== '') {
                         $.ajax({
                             url: '/day',
                             type: 'DELETE',
                             data: {
-                                subjects_id: $(this).parent().id
+                                subjects_id: parent
                             }
                         });
                     }
-                    this.parentElement.parentElement.remove();
+                    this.parentElement.parentElement.parentElement.remove();
 
             } else {
-                var childa = this.parentElement.childNodes;
+                var childa = this.parentElement.parentElement.childNodes;
                 var sub_id = childa[1];
                 var teach_id = childa[3];
                 var arr = [[],[],[]];
@@ -47,7 +49,7 @@ ready = function() {
                 arr[1].push(sub_id.value);
                 arr[2].push(teach_id.value);
                 $.ajax({
-                    url: '/day/' + this.parentElement.id,
+                    url: '/day/' + this.parentElement.parentElement.id,
                     type: 'POST',
                     data: {day: {data_ids: arr}}
                 });
@@ -64,7 +66,7 @@ ready = function() {
     });
 
     $(document).on ("click", '#save-item-edit', function () {
-            var childa = this.parentElement.childNodes;
+            var childa = this.parentElement.parentElement.childNodes;
             var sub_id = childa[1];
             var teach_id = childa[3];
             var arr = [[],[],[]];
@@ -73,7 +75,7 @@ ready = function() {
             arr[1].push(sub_id.value);
             arr[2].push(teach_id.value);
             $.ajax({
-                url: '/day/' + this.parentElement.id,
+                url: '/day/' + this.parentElement.parentElement.id,
                 type: 'PATCH',
                 data: {day: {data_ids: arr}}
             });
@@ -81,15 +83,15 @@ ready = function() {
 
     $(document).on ("click", '#delete-item', function () {
         if(confirm('are you sure ?')) {
-            var parent = this.parentElement.id;
+            var parent = this.parentElement.parentElement.id;
             if((typeof parent !== 'undefined') &&
                 parent != null && parent !== '') {
                 $.ajax({
-                    url: '/day/' + this.parentElement.id,
+                    url: '/day/' + parent,
                     type: 'DELETE'
                 });
             }
-            this.parentElement.parentElement.remove();
+            this.parentElement.parentElement.parentElement.remove();
         }
     });
 
@@ -99,7 +101,7 @@ ready = function() {
             var sub_container = sub_list.parentElement;
             var sub_list_length = sub_list.childElementCount;
             for (var i = 0; i < sub_list_length; i += 1) {
-                var li = sub_list.childNodes[i].childNodes[0];
+                var li = sub_list.childNodes[i].childNodes[0].childNodes[1];
                     arr[0].push(
                         sub_container.id
                     );

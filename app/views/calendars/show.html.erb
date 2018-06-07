@@ -8,11 +8,9 @@
 </div>
 
 <div id="hidden-information" style="display: none">
-  <div class="help-container">
+  <div class="help-container" style="display: flex; justify-content: center; margin-right: 20px; margin-top: 10px;">
     <input data-autocomplete-source="/subjects" type="text" name="calendars[subject]" id="calendars_subject" class="lodgingComboSubjects">
     <input data-autocomplete-source="/teachers" type="text" name="calendars[teacher]" id="calendars_teacher" class="lodgingComboTeachers">
-  </div>
-  <div style="display: flex; justify-content: center; margin-right: 20px; margin-top: 10px;">
     <%= link_to 'Delete item', 'javascript:void(0)', id: 'delete-item', class: 'btn btn-outline-danger btn-sm' %>
   </div>
 </div>

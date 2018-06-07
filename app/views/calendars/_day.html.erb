@@ -6,8 +6,10 @@
           <div id="<%= day.id %>" >
             <input data-autocomplete-source="/subjects" type="text" value="<%= @subjects.find_by(id: day.subjects_id).name%>" name="calendars[subject]" id="calendars_subject" class="lodgingComboSubjects">
             <input data-autocomplete-source="/teachers" type="text" value="<%= @teachers.find_by(id: day.teachers_id).surname %> <%=@teachers.find_by(id: day.teachers_id).name%>"name="calendars[teacher]" id="calendars_teacher" class="lodgingComboTeachers">
+            <div class="help-container" style="margin-left: 30px">
             <%= link_to 'Save item', 'javascript:void(0)',  data: { turbolinks: false }, id: 'save-item-edit', class: 'btn btn-outline-success btn-sm' %>
             <%= link_to 'Delete item', 'javascript:void(0)',  data: { turbolinks: false }, id: 'delete-item', class: 'btn btn-outline-danger btn-sm' %>
+            </div>
           </div>
         </li>
       <% end %>
@@ -16,4 +18,5 @@
   <div class="footer">
   <%= link_to 'Delete list', 'javascript:void(0);',  data: { turbolinks: false }, class: 'btn btn-dark submit-btn',
               id: 'calendar-delete-btn'%>
+</div>
 </div>

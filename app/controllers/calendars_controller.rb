@@ -1,11 +1,13 @@
 class CalendarsController < ApplicationController
   def index
-    date = params[:date] ||= Date.today.to_s
+    if params[:date]
+    date = params[:date]
     @calendar = Calendar.find_by(date: date)
     @day = Day.where(calendars_id: @calendar.id) unless @calendar.nil?
     unless @day.nil?
     @teachers = Teacher.where(id: @day.map(&:teachers_id))
     @subjects = Subject.where(id: @day.map(&:subjects_id))
+    end
     end
   end
 
