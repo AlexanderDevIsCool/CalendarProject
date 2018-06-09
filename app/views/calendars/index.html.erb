@@ -2,9 +2,10 @@
 
   <h1>Calendar</h1>
   <%= simple_form_for :calendar, method: :get do |f| %>
-    <%= f.input :date, as: :string, input_html: { class: 'datepicker'} %>
+    <%= f.input :date, as: :string, input_html: { class: 'datepicker', placeholder: 'Select day'} %>
   <%end%>
 
+  <input data-autocomplete-source="/timetables" placeholder="timetable" type="text" name="timetable[name]" id="calendars_timetables" class="lodgingComboTimetables">
 
    <div class="content">
     <div class="container-ajax" id="container">

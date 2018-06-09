@@ -1,4 +1,3 @@
 class Calendar < ApplicationRecord
-  validates :date, uniqueness: { case_sensitive: false },
-            presence: true
+  validates :date, presence: true
 end

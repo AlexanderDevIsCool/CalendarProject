@@ -10,12 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_07_155621) do
+ActiveRecord::Schema.define(version: 2018_06_09_074002) do
 
   create_table "calendars", force: :cascade do |t|
     t.string "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "time_table_id"
+    t.integer "day_of_week"
   end
 
   create_table "days", force: :cascade do |t|
@@ -25,6 +27,7 @@ ActiveRecord::Schema.define(version: 2018_06_07_155621) do
     t.datetime "updated_at", null: false
     t.integer "calendars_id"
     t.string "auditorium"
+    t.string "timetables_name"
     t.index ["calendars_id"], name: "index_days_on_calendars_id"
     t.index ["subjects_id"], name: "index_days_on_subjects_id"
     t.index ["teachers_id"], name: "index_days_on_teachers_id"
@@ -39,6 +42,14 @@ ActiveRecord::Schema.define(version: 2018_06_07_155621) do
   create_table "teachers", force: :cascade do |t|
     t.string "name"
     t.string "surname"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "timetables", force: :cascade do |t|
+    t.string "name"
+    t.string "from"
+    t.string "to"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

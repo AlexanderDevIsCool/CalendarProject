@@ -1,0 +1,47 @@
+<p id="notice"><%= notice %></p>
+<div>
+  <% 5.times do |i| %>
+    <div id="<%= @timetable.id %>" class="days-of-week">
+      <% case i %>
+      <% when 0 %>
+        <h4>Monday</h4>
+      <% when 1 %>
+        <h4>Tuesday</h4>
+      <% when 2 %>
+        <h4>Wednesday</h4>
+      <% when 3 %>
+        <h4>Thursday</h4>
+      <% when 4 %>
+        <h4>Friday</h4>
+      <% end %>
+      <div id="timetable-days">
+        <ol>
+          <li>
+            <div>
+              <input data-autocomplete-source="/subjects" placeholder="Subject" type="text" name="calendars[subject]" id="calendars_subject" class="lodgingComboSubjects">
+              <input data-autocomplete-source="/teachers" placeholder="Teacher" type="text" name="calendars[teacher]" id="calendars_teacher" class="lodgingComboTeachers">
+              <input type="text" placeholder="Auditorium">
+              <%= link_to 'Delete item', 'javascript:void(0)', data: {turbolinks: false}, id: 'delete-timetable-item', class: 'btn btn-outline-danger btn-sm' %>
+            </div>
+          </li>
+        </ol>
+        <%= link_to 'Add subject', 'javascript:void(0);', data: {turbolinks: false}, id: i, class: 'subject-timetable-add btn btn-success' %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<div class="footer">
+  <%= link_to 'Save list', 'javascript:void(0)', data: {turbolinks: false}, class: 'btn btn-success submit-btn',
+              id: 'calendar-timetable-send-btn' %>
+  <%= link_to 'Delete list', 'javascript:void(0)', data: {turbolinks: false}, class: 'calendar-timetable-delete-btn btn btn-danger submit-btn',
+              id: @timetable.id %>
+  <%= link_to 'Back', timetables_path, data: {turbolinks: false}, class: 'btn btn-outline-dark' %>
+</div>
+
+<div id="hidden-information-timetable" style="display: none">
+  <input data-autocomplete-source="/subjects" placeholder="Subject" type="text" name="calendars[subject]" id="calendars_subject" class="lodgingComboSubjects">
+  <input data-autocomplete-source="/teachers" placeholder="Teacher" type="text" name="calendars[teacher]" id="calendars_teacher" class="lodgingComboTeachers">
+  <input type="text" placeholder="Auditorium">
+  <%= link_to 'Delete item', 'javascript:void(0)', data: {turbolinks: false}, id: 'delete-timetable-item', class: 'btn btn-outline-danger btn-sm' %>
+</div>

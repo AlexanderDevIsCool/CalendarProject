@@ -6,7 +6,8 @@ var ready;
         altInput: true,
         onChange: function (selectedDates, dateStr, instance) {
             $.ajax({
-                url: '/ajax_for_index?date=' + dateStr,
+                url: '/ajax_for_index?date=' + dateStr +
+                '&timetable=' + document.getElementById('calendars_timetables').value,
                 type: 'GET',
                 dataType: 'script',
                 success: function (r) {
