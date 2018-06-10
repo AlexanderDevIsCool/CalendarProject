@@ -1,6 +1,5 @@
 class CalendarsController < ApplicationController
   def index
-    p params[:timetable]
     if params[:date]
       date = params[:date]
       @calendar = Calendar.find_by(date: date)
@@ -29,7 +28,6 @@ class CalendarsController < ApplicationController
   end
 
   def create
-    p calendars_params
     @calendar = Calendar.new(calendars_params)
     if @calendar.save
       redirect_to @calendar

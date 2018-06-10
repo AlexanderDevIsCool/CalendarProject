@@ -95,7 +95,7 @@ class DayController < ApplicationController
       if value.is_a?(ActionController::Parameters)
         value.each do |key2, value2|
           key2i = 0
-          (0..((value2.length / 3) - 1)).each_with_index do |tru_value, index|
+          (0..((value2.length / 3) - 1)).each_with_index do
             key2i += 3
             sub[key2.to_i] << value2[-3 + key2i]
             teach[key2.to_i] << value2[-2 + key2i]
@@ -105,15 +105,10 @@ class DayController < ApplicationController
       end
     end
 
-    p "sub #{sub}"
-
     (1..5).each_with_index do |value, index|
-      p "DAY_OF_WEEK: #{value}"
       days = Calendar.where(time_table_id: timetable_id, day_of_week: value)
       days.each do |day|
-        p "DAY WHERE DAY_OF_WEEK #{value} : #{day}"
         (0..sub[index].length - 1).each do |index1|
-          p "HOW MUCH SUBJECTS: #{sub[index].length}"
           teach_split = teach[index][index1].split(' ')
           Day.create(subjects_id: Subject.find_by(name: sub[index][index1]).id,
                      teachers_id: Teacher.find_by(name: teach_split[1],
@@ -123,10 +118,72 @@ class DayController < ApplicationController
         end
       end
     end
+
+    (0..4).each_with_index do |value|
+      (0..sub[value].length - 1).each do |index1|
+        teach_split = teach[value][index1].split(' ')
+        Day.create(subjects_id: Subject.find_by(name: sub[value][index1]).id,
+                   teachers_id: Teacher.find_by(name: teach_split[1],
+                                                surname: teach_split[0]).id,
+                   calendars_id: (value - 5),
+                   auditorium: auditory[value][index1], timetables_name: timetable_id)
+      end
+    end
+
+    redirect_to calendars_path
+
   end
 
   def timetable_edit
 
+
+    sub = [[], [], [], [], []]
+    teach = [[], [], [], [], []]
+    auditory = [[], [], [], [], []]
+    timetable_id = ""
+    day_params.each do |key, value|
+      timetable_id = value if value.is_a?(String)
+      if value.is_a?(ActionController::Parameters)
+        value.each do |key2, value2|
+          key2i = 0
+          (0..((value2.length / 3) - 1)).each_with_index do
+            key2i += 3
+            sub[key2.to_i] << value2[-3 + key2i]
+            teach[key2.to_i] << value2[-2 + key2i]
+            auditory[key2.to_i] << value2[-1 + key2i]
+          end
+        end
+      end
+    end
+
+    Day.where(timetables_name: timetable_id).delete_all
+
+    (1..5).each_with_index do |value, index|
+      days = Calendar.where(time_table_id: timetable_id, day_of_week: value)
+      days.each do |day|
+        (0..sub[index].length - 1).each do |index1|
+          teach_split = teach[index][index1].split(' ')
+          Day.create(subjects_id: Subject.find_by(name: sub[index][index1]).id,
+                     teachers_id: Teacher.find_by(name: teach_split[1],
+                                                  surname: teach_split[0]).id,
+                     calendars_id: Calendar.find_by(date: day.date, time_table_id: timetable_id).id,
+                     auditorium: auditory[index][index1], timetables_name: timetable_id)
+        end
+      end
+    end
+
+    (0..4).each_with_index do |value|
+      (0..sub[value].length - 1).each do |index1|
+        teach_split = teach[value][index1].split(' ')
+        Day.create(subjects_id: Subject.find_by(name: sub[value][index1]).id,
+                   teachers_id: Teacher.find_by(name: teach_split[1],
+                                                surname: teach_split[0]).id,
+                   calendars_id: (value - 5),
+                   auditorium: auditory[value][index1], timetables_name: timetable_id)
+      end
+    end
+
+    redirect_to calendars_path
   end
 
   private
