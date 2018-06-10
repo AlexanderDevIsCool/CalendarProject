@@ -107,8 +107,16 @@ class DayController < ApplicationController
 
     (1..5).each_with_index do |value, index|
       days = Calendar.where(time_table_id: timetable_id, day_of_week: value)
-      days.each do |day|
+      days.each_with_index do |day, i|
+        if i % 2 == 0
+          denominator = false
+        else
+          denominator = true
+        end
         (0..sub[index].length - 1).each do |index1|
+          next if denominator && sub[index][index1 + 1].eql?('denominator')
+          next if sub[index][index1].eql?('denominator')
+          next if denominator == false && sub[index][index1 - 1].eql?('denominator')
           teach_split = teach[index][index1].split(' ')
           Day.create(subjects_id: Subject.find_by(name: sub[index][index1]).id,
                      teachers_id: Teacher.find_by(name: teach_split[1],
@@ -121,12 +129,15 @@ class DayController < ApplicationController
 
     (0..4).each_with_index do |value|
       (0..sub[value].length - 1).each do |index1|
+        next if sub[value][index1].eql?('denominator')
+        has_denominator = sub[value][index1 + 1].eql?('denominator')
         teach_split = teach[value][index1].split(' ')
         Day.create(subjects_id: Subject.find_by(name: sub[value][index1]).id,
                    teachers_id: Teacher.find_by(name: teach_split[1],
                                                 surname: teach_split[0]).id,
                    calendars_id: (value - 5),
-                   auditorium: auditory[value][index1], timetables_name: timetable_id)
+                   auditorium: auditory[value][index1], timetables_name: timetable_id,
+                   has_denominator: has_denominator)
       end
     end
 
@@ -135,7 +146,6 @@ class DayController < ApplicationController
   end
 
   def timetable_edit
-
 
     sub = [[], [], [], [], []]
     teach = [[], [], [], [], []]
@@ -160,8 +170,16 @@ class DayController < ApplicationController
 
     (1..5).each_with_index do |value, index|
       days = Calendar.where(time_table_id: timetable_id, day_of_week: value)
-      days.each do |day|
+      days.each_with_index do |day, i|
+        if i % 2 == 0
+          denominator = false
+        else
+          denominator = true
+        end
         (0..sub[index].length - 1).each do |index1|
+          next if denominator && sub[index][index1 + 1].eql?('denominator')
+          next if sub[index][index1].eql?('denominator')
+          next if denominator == false && sub[index][index1 - 1].eql?('denominator')
           teach_split = teach[index][index1].split(' ')
           Day.create(subjects_id: Subject.find_by(name: sub[index][index1]).id,
                      teachers_id: Teacher.find_by(name: teach_split[1],
@@ -174,16 +192,20 @@ class DayController < ApplicationController
 
     (0..4).each_with_index do |value|
       (0..sub[value].length - 1).each do |index1|
+        next if sub[value][index1].eql?('denominator')
+        has_denominator = sub[value][index1 + 1].eql?('denominator')
         teach_split = teach[value][index1].split(' ')
         Day.create(subjects_id: Subject.find_by(name: sub[value][index1]).id,
                    teachers_id: Teacher.find_by(name: teach_split[1],
                                                 surname: teach_split[0]).id,
                    calendars_id: (value - 5),
-                   auditorium: auditory[value][index1], timetables_name: timetable_id)
+                   auditorium: auditory[value][index1], timetables_name: timetable_id,
+                   has_denominator: has_denominator)
       end
     end
 
     redirect_to calendars_path
+
   end
 
   private

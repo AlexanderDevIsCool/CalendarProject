@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_09_074002) do
+ActiveRecord::Schema.define(version: 2018_06_10_091729) do
 
   create_table "calendars", force: :cascade do |t|
     t.string "date"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 2018_06_09_074002) do
     t.integer "calendars_id"
     t.string "auditorium"
     t.string "timetables_name"
+    t.boolean "has_denominator", default: false
     t.index ["calendars_id"], name: "index_days_on_calendars_id"
     t.index ["subjects_id"], name: "index_days_on_subjects_id"
     t.index ["teachers_id"], name: "index_days_on_teachers_id"

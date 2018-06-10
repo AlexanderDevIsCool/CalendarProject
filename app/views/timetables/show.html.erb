@@ -22,6 +22,7 @@
               <input data-autocomplete-source="/teachers" placeholder="Teacher" type="text" name="calendars[teacher]" id="calendars_teacher" class="lodgingComboTeachers">
               <input type="text" placeholder="Auditorium">
               <%= link_to 'Delete item', 'javascript:void(0)', data: {turbolinks: false}, id: 'delete-timetable-item', class: 'btn btn-outline-danger btn-sm' %>
+              <%= link_to 'Add denominator', 'javascript:void(0)', data: {turbolinks: false}, id: 'add-denominator', class: 'btn btn-outline-success btn-sm' %>
             </div>
           </li>
         </ol>
@@ -44,4 +45,12 @@
   <input data-autocomplete-source="/teachers" placeholder="Teacher" type="text" name="calendars[teacher]" id="calendars_teacher" class="lodgingComboTeachers">
   <input type="text" placeholder="Auditorium">
   <%= link_to 'Delete item', 'javascript:void(0)', data: {turbolinks: false}, id: 'delete-timetable-item', class: 'btn btn-outline-danger btn-sm' %>
+  <%= link_to 'Add denominator', 'javascript:void(0)', data: {turbolinks: false}, id: 'add-denominator', class: 'btn btn-outline-success btn-sm' %>
 </div>
+
+
+<input data-autocomplete-source="/subjects" placeholder="Subject" type="text" name="calendars[subject]"
+       id="subject_denominator" class="lodgingComboSubjects" style="display: none">
+<input data-autocomplete-source="/teachers" placeholder="Teacher" type="text" name="calendars[teacher]"
+       id="teacher_denominator" class="lodgingComboTeachers" style="display: none">
+<input type="text" id="auditorium_denominator" placeholder="Auditorium" style="display: none">

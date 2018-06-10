@@ -21,15 +21,35 @@
       <% end %>
       <div id="timetable-days">
         <ol>
-          <% @days.each do |value|%>
-          <li>
-            <div>
-              <input data-autocomplete-source="/subjects" value="<%=  Subject.find_by(id: value.subjects_id).name %>" type="text" name="calendars[subject]" id="calendars_subject" class="lodgingComboSubjects">
-              <input data-autocomplete-source="/teachers" value="<%= Teacher.find_by(id: value.teachers_id).surname %> <%= Teacher.find_by(id: value.teachers_id).name %>" type="text" name="calendars[teacher]" id="calendars_teacher" class="lodgingComboTeachers">
-              <input type="text" value="<%= value.auditorium %>">
-              <%= link_to 'Delete item', 'javascript:void(0)', data: {turbolinks: false}, id: 'delete-timetable-item', class: 'btn btn-outline-danger btn-sm' %>
-            </div>
-          </li>
+          <% @days.each do |value| %>
+            <% next if Day.find_by(id: (value.id - 1)).has_denominator %>
+            <% if value.has_denominator %>
+              <li>
+                <div>
+                  <input data-autocomplete-source="/subjects" value="<%= Subject.find_by(id: value.subjects_id).name %>" type="text" name="calendars[subject]" id="calendars_subject" class="lodgingComboSubjects">
+                  <input data-autocomplete-source="/teachers" value="<%= Teacher.find_by(id: value.teachers_id).surname %> <%= Teacher.find_by(id: value.teachers_id).name %>" type="text" name="calendars[teacher]" id="calendars_teacher" class="lodgingComboTeachers">
+                  <input type="text" value="<%= value.auditorium %>">
+                  <%= link_to 'Delete item', 'javascript:void(0)', data: {turbolinks: false}, id: 'delete-timetable-item', class: 'btn btn-outline-danger btn-sm' %>
+                  <%= link_to 'Remove denominator', 'javascript:void(0)', data: {turbolinks: false}, id: 'add-denominator', class: 'btn btn-outline-success btn-sm remove' %>
+                  <br>
+                  <input data-autocomplete-source="/subjects" value="<%= Subject.find_by(id: Day.find_by(id: value.id + 1).subjects_id).name %>" type="text" name="calendars[subject]"
+                         id="subject_denominator" class="lodgingComboSubjects">
+                  <input data-autocomplete-source="/teachers" value="<%= Teacher.find_by(id: Day.find_by(id: value.id + 1).teachers_id).surname %> <%= Teacher.find_by(id: Day.find_by(id: value.id - 1).teachers_id).name %>" type="text" name="calendars[teacher]"
+                         id="teacher_denominator" class="lodgingComboTeachers">
+                  <input type="text" id="auditorium_denominator" value="<%= Day.find_by(id: value.id + 1).auditorium %>">
+                </div>
+              </li>
+            <% else %>
+              <li>
+                <div>
+                  <input data-autocomplete-source="/subjects" value="<%= Subject.find_by(id: value.subjects_id).name %>" type="text" name="calendars[subject]" id="calendars_subject" class="lodgingComboSubjects">
+                  <input data-autocomplete-source="/teachers" value="<%= Teacher.find_by(id: value.teachers_id).surname %> <%= Teacher.find_by(id: value.teachers_id).name %>" type="text" name="calendars[teacher]" id="calendars_teacher" class="lodgingComboTeachers">
+                  <input type="text" value="<%= value.auditorium %>">
+                  <%= link_to 'Delete item', 'javascript:void(0)', data: {turbolinks: false}, id: 'delete-timetable-item', class: 'btn btn-outline-danger btn-sm' %>
+                  <%= link_to 'Add denominator', 'javascript:void(0)', data: {turbolinks: false}, id: 'add-denominator', class: 'btn btn-outline-success btn-sm' %>
+                </div>
+              </li>
+            <% end %>
           <% end %>
         </ol>
         <%= link_to 'Add subject', 'javascript:void(0);', data: {turbolinks: false}, id: i, class: 'subject-timetable-add btn btn-success' %>
@@ -51,4 +71,11 @@
   <input data-autocomplete-source="/teachers" placeholder="Teacher" type="text" name="calendars[teacher]" id="calendars_teacher" class="lodgingComboTeachers">
   <input type="text" placeholder="Auditorium">
   <%= link_to 'Delete item', 'javascript:void(0)', data: {turbolinks: false}, id: 'delete-timetable-item', class: 'btn btn-outline-danger btn-sm' %>
+  <%= link_to 'Add denominator', 'javascript:void(0)', data: {turbolinks: false}, id: 'add-denominator', class: 'btn btn-outline-success btn-sm' %>
 </div>
+
+<input data-autocomplete-source="/subjects" placeholder="Subject" type="text" name="calendars[subject]"
+       id="subject_denominator" class="lodgingComboSubjects" style="display: none">
+<input data-autocomplete-source="/teachers" placeholder="Teacher" type="text" name="calendars[teacher]"
+       id="teacher_denominator" class="lodgingComboTeachers" style="display: none">
+<input type="text" id="auditorium_denominator" placeholder="Auditorium" style="display: none">

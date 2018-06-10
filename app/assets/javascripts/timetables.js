@@ -40,9 +40,27 @@ ready = function () {
                             var div = ol.childNodes[a].childNodes[0];
                             if (a === 1)
                                 div = ol.childNodes[a].childNodes[1];
-                            arr[i].push(div.childNodes[1].value);
-                            arr[i].push(div.childNodes[3].value);
-                            arr[i].push(div.childNodes[5].value);
+                            if (div.childNodes.length < 12) {
+
+                                arr[i].push(div.childNodes[1].value);
+                                arr[i].push(div.childNodes[3].value);
+                                arr[i].push(div.childNodes[5].value);
+
+                            } else {
+
+                                arr[i].push(div.childNodes[1].value);
+                                arr[i].push(div.childNodes[3].value);
+                                arr[i].push(div.childNodes[5].value);
+
+                                arr[i].push('denominator');
+                                arr[i].push('denominator');
+                                arr[i].push('denominator');
+
+                                arr[i].push(div.childNodes[12].value);
+                                arr[i].push(div.childNodes[13].value);
+                                arr[i].push(div.childNodes[14].value);
+
+                            }
                         }
                     }
                     $.ajax({
@@ -68,20 +86,53 @@ ready = function () {
                             if (!(ol.childNodes[a] instanceof HTMLLIElement))
                                 continue;
                             var div = ol.childNodes[a].childNodes[0];
-                            if (!(ol.childNodes[a].childNodes[0] instanceof HTMLDivElement))
+                            if (!(div instanceof HTMLDivElement ))
                                 div = ol.childNodes[a].childNodes[1];
-                            alert('div? : ' + div);
-                            arr[i].push(div.childNodes[1].value);
-                            arr[i].push(div.childNodes[3].value);
-                            arr[i].push(div.childNodes[5].value);
+                            alert(div);
+                            if (div.childNodes.length < 12) {
+                                alert('short');
+                                arr[i].push(div.childNodes[1].value);
+                                arr[i].push(div.childNodes[3].value);
+                                arr[i].push(div.childNodes[5].value);
+
+                            } else if (div.childNodes[14] instanceof HTMLInputElement){
+                                alert('dynamic');
+                                arr[i].push(div.childNodes[1].value);
+                                arr[i].push(div.childNodes[3].value);
+                                arr[i].push(div.childNodes[5].value);
+
+                                arr[i].push('denominator');
+                                arr[i].push('denominator');
+                                arr[i].push('denominator');
+
+                                arr[i].push(div.childNodes[12].value);
+                                arr[i].push(div.childNodes[13].value);
+                                arr[i].push(div.childNodes[14].value);
+
+                            } else {
+                                alert('static');
+                                arr[i].push(div.childNodes[1].value);
+                                arr[i].push(div.childNodes[3].value);
+                                arr[i].push(div.childNodes[5].value);
+
+                                arr[i].push('denominator');
+                                arr[i].push('denominator');
+                                arr[i].push('denominator');
+
+                                arr[i].push(div.childNodes[13].value);
+                                arr[i].push(div.childNodes[15].value);
+                                arr[i].push(div.childNodes[17].value);
+                            }
                         }
                     }
+
                     $.ajax({
                         url: '/timetable_edit',
                         type: 'POST',
                         data: {day: {time_table_id: divs[0].id, timetable_ids: arr}},
                     });
                     this.setAttribute('id', 'calendar-timetable-send-btn-edit-prevent');
+
                 }
             }
         });
@@ -93,9 +144,9 @@ ready = function () {
     });
 
     $(document).on('click', '.calendar-timetable-delete-btn', function () {
-        if (confirm('are you sure ?')) {
+        if (confirm('are you sure 123?')) {
             $.ajax({
-                url: this.id,
+                url: '/timetables/' + this.id,
                 type: 'DELETE'
             });
         }
@@ -116,9 +167,29 @@ ready = function () {
                         var div = ol.childNodes[a].childNodes[0];
                         if (a === 1)
                             div = ol.childNodes[a].childNodes[1];
-                        arr[i].push(div.childNodes[1].value);
-                        arr[i].push(div.childNodes[3].value);
-                        arr[i].push(div.childNodes[5].value);
+
+                        if (div.childNodes.length < 12) {
+
+                            arr[i].push(div.childNodes[1].value);
+                            arr[i].push(div.childNodes[3].value);
+                            arr[i].push(div.childNodes[5].value);
+
+                        } else {
+
+                            arr[i].push(div.childNodes[1].value);
+                            arr[i].push(div.childNodes[3].value);
+                            arr[i].push(div.childNodes[5].value);
+
+                            arr[i].push('denominator');
+                            arr[i].push('denominator');
+                            arr[i].push('denominator');
+
+
+                            arr[i].push(div.childNodes[12].value);
+                            arr[i].push(div.childNodes[13].value);
+                            arr[i].push(div.childNodes[14].value);
+
+                        }
                     }
                 }
                 $.ajax({
@@ -146,13 +217,40 @@ ready = function () {
                         var div = ol.childNodes[a].childNodes[0];
                         if (a === 1)
                             div = ol.childNodes[a].childNodes[1];
-                        alert(div.childNodes[0]);
-                        alert(div.childNodes[1]);
-                        alert(div.childNodes[2]);
-                        alert(div.childNodes[3]);
-                        arr[i].push(div.childNodes[1].value);
-                        arr[i].push(div.childNodes[3].value);
-                        arr[i].push(div.childNodes[5].value);
+                        if (div.childNodes.length < 12) {
+                            alert('short');
+                            arr[i].push(div.childNodes[1].value);
+                            arr[i].push(div.childNodes[3].value);
+                            arr[i].push(div.childNodes[5].value);
+
+                        } else if (div.childNodes[14] instanceof HTMLInputElement){
+                            alert('dynamic');
+                            arr[i].push(div.childNodes[1].value);
+                            arr[i].push(div.childNodes[3].value);
+                            arr[i].push(div.childNodes[5].value);
+
+                            arr[i].push('denominator');
+                            arr[i].push('denominator');
+                            arr[i].push('denominator');
+
+                            arr[i].push(div.childNodes[12].value);
+                            arr[i].push(div.childNodes[13].value);
+                            arr[i].push(div.childNodes[14].value);
+
+                        } else {
+                            alert('static');
+                            arr[i].push(div.childNodes[1].value);
+                            arr[i].push(div.childNodes[3].value);
+                            arr[i].push(div.childNodes[5].value);
+
+                            arr[i].push('denominator');
+                            arr[i].push('denominator');
+                            arr[i].push('denominator');
+
+                            arr[i].push(div.childNodes[13].value);
+                            arr[i].push(div.childNodes[15].value);
+                            arr[i].push(div.childNodes[17].value);
+                        }
                     }
                 }
                 $.ajax({
@@ -165,6 +263,36 @@ ready = function () {
         }
     });
 
+    $(document).on('click', '#add-denominator', function () {
+        if (!$(this).hasClass('remove')) {
+            var subject_d = document.getElementById('subject_denominator').cloneNode(true);
+            var teacher_d = document.getElementById('teacher_denominator').cloneNode(true);
+            var auditorium_d = document.getElementById('auditorium_denominator').cloneNode(true);
+
+            subject_d.style.display = 'inline';
+            teacher_d.style.display = 'inline';
+            auditorium_d.style.display = 'inline';
+
+            subject_d.setAttribute('id', '');
+            teacher_d.setAttribute('id', '');
+            auditorium_d.setAttribute('id', '');
+
+            this.parentElement.appendChild(document.createElement('br'));
+            this.parentElement.appendChild(subject_d);
+            this.parentElement.appendChild(teacher_d);
+            this.parentElement.appendChild(auditorium_d);
+            $(this).addClass('remove');
+            this.textContent = 'Remove denominator';
+        } else {
+
+            this.parentElement.childNodes[14].remove();
+            this.parentElement.childNodes[13].remove();
+            this.parentElement.childNodes[12].remove();
+            this.parentElement.childNodes[11].remove();
+            $(this).removeClass('remove');
+            this.textContent = 'Add denominator';
+        }
+    });
 
     $(document).on('click', '.lodgingComboSubjects', function () {
         $(".lodgingComboSubjects").each(function () {
