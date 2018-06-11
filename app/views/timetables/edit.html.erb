@@ -1,5 +1,5 @@
 <p id="notice"><%= notice %></p>
-<div>
+<div class="content", style="margin-top: 100px;">
   <% 5.times do |i| %>
     <div id="<%= @timetable.id %>" class="days-of-week">
       <% case i %>
@@ -58,7 +58,7 @@
   <% end %>
 </div>
 
-<div class="footer">
+<div class="footer", style="margin-top: 100px">
   <%= link_to 'Save list', 'javascript:void(0)', data: {turbolinks: false}, class: 'btn btn-success submit-btn',
               id: 'calendar-timetable-send-btn-edit' %>
   <%= link_to 'Delete list', 'javascript:void(0)', data: {turbolinks: false}, class: 'calendar-timetable-delete-btn btn btn-danger submit-btn',
